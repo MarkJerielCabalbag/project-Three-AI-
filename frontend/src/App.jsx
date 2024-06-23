@@ -1,10 +1,10 @@
 import React from "react";
 import Auth from "./content/Auth";
-
+import Home from "./content/Home";
 function App() {
   return (
-    <div className="h-screen flex justify-center items-center">
-      <Auth />
+    <div className="">
+      <Home />
     </div>
   );
 }
