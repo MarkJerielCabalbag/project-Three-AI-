@@ -7,24 +7,26 @@ import { Button } from "@/components/ui/button";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-function Auth() {
+function Auth({ authContent }) {
   return (
-    <Tabs defaultValue="signin" className="w-[500px]">
-      <TabsList className="w-full">
-        <TabsTrigger value="signin" className="w-2/4">
-          Sign in
-        </TabsTrigger>
-        <TabsTrigger value="signup" className="w-2/4">
-          Sign up
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="signin">
-        <SignIn />
-      </TabsContent>
-      <TabsContent value="signup">
-        <SignUp />
-      </TabsContent>
-    </Tabs>
+    <>
+      <Tabs defaultValue="signin" className="w-[500px]">
+        <TabsList className="w-full">
+          <TabsTrigger value="signin" className="w-2/4">
+            Sign in
+          </TabsTrigger>
+          <TabsTrigger value="signup" className="w-2/4">
+            Sign up
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="signin">
+          <SignIn />
+        </TabsContent>
+        <TabsContent value="signup">
+          <SignUp />
+        </TabsContent>
+      </Tabs>
+    </>
   );
 }
 

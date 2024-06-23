@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "express": "^4.19.2",
-    "mongoose": "^8.4.3"
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.4.3",
+    "react-router-dom": "^6.23.1"
   }
 }
