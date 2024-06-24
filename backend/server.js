@@ -3,7 +3,6 @@ import connectDB from "./config/connectDB.js";
 import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 import bodyParser from "body-parser";
-
 import requestRoutes from "./routes/requestRoutes.js";
 import oauthRoutes from "./routes/oauthRoutes.js";
 import authRoutes from "./routes/authGoogleMiddleware.js";
@@ -24,8 +23,6 @@ app.options("*", function (req, res, next) {
   res.status(200);
   next();
 });
-
-app.set("view engine", "pug");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
