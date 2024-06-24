@@ -5,5 +5,6 @@ const userRoutes = express.Router();
 
 //create user account
 userRoutes.post("/register", userController.register);
+userRoutes.post("/registerGoogle", userController.registerGoogle);
 
 export default userRoutes;
