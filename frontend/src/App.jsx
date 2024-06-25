@@ -21,10 +21,8 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
-      <div className="h-screen flex justify-center items-center">
-        <Auth />
-        <Toaster />
-      </div>
+      <Auth />
+      <Toaster />
     </>
   );
 }
