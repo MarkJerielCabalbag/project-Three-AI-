@@ -29,6 +29,7 @@ const register = expressAsyncHandler(async (req, res, next) => {
     user_email,
     user_username,
     user_password,
+    user_auth_type: "notFromGoogle",
   });
 
   //if error creation

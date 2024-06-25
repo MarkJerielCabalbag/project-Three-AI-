@@ -4,16 +4,17 @@ const userSchema = mongoose.Schema(
   {
     user_email: {
       type: String,
-      required: [true, "Please fill all fields"],
-      unique: true,
+      uniqued: true,
     },
     user_username: {
       type: String,
-      required: [true, "Please fill all fields"],
+      unique: false,
     },
-    user_password: {
+    user_picture: {
       type: String,
-      required: [true, "Please fill all fields"],
+    },
+    user_auth_type: {
+      type: String,
     },
   },
   {
