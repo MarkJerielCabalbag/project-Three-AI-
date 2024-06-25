@@ -5,7 +5,7 @@ const oauthRoutes = express.Router();
 import { jwtDecode } from "jwt-decode";
 async function getUserData(access_token) {
   const response = await fetch(
-    `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
+    `https://www.googleapis.com/auth/userinfo.profile?access_token=${access_token}`
   );
   const data = await response.json();
   console.log("data", data);
@@ -16,6 +16,7 @@ oauthRoutes.get("/", async function (req, res, next) {
   const code = req.query.code;
 
   try {
+    //SERVER OAUTH TO PROCESS THE AUTHENTICATION USING THE LIBRARY
     const redirectURL = "http://127.0.0.1:8000/oauth";
     const oAuth2Client = new OAuth2Client(
       process.env.CLIENT_ID,
@@ -30,18 +31,10 @@ oauthRoutes.get("/", async function (req, res, next) {
     console.log(decodedUser);
     const user_username = decodedUser.name;
     const user_picture = decodedUser.picture;
-    console.log(user_username, user_picture);
-    //check if that account has a duplication in User collection
+    const user_email = decodedUser.email;
 
-    // const findUserDuplication = await User.findOne({
-    //   user_username: user_username,
-    //   user_picture: user_picture,
-    // });
-
-    // if (findUserDuplication) {
-    //   res.status(200).json({ message: "Account duplication" });
-    // }
     const newUser = await User.create({
+      user_email: user_email,
       user_username: user_username,
       user_picture: user_picture,
       user_auth_type: "fromGoogle",
@@ -51,8 +44,6 @@ oauthRoutes.get("/", async function (req, res, next) {
       .save()
       .then((doc) => console.log(doc))
       .catch((err) => console.log("Error occured: ", err));
-    //else lets create that data to User users collection
-    //after getting those credentials via 0auth
 
     console.log("credentials", user);
     await getUserData(oAuth2Client.credentials.access_token);
@@ -60,6 +51,7 @@ oauthRoutes.get("/", async function (req, res, next) {
     console.log("Error logging in with OAuth2 user", err);
   }
 
+  //UI REACT PART
   res.redirect(303, "http://localhost:5173");
 });
 

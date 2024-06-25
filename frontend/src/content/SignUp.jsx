@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Info, Lock, Mail, User } from "lucide-react";
+import { Info, LoaderCircle, Lock, Mail, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRegister } from "@/api/useApi";
 import toast from "react-hot-toast";
@@ -169,7 +169,11 @@ function SignUp() {
           }}
           className="bg-primary w-full"
         >
-          Sign-up
+          {isLoading || isPending ? (
+            <LoaderCircle className="animate-spin" />
+          ) : (
+            "Sign - up"
+          )}
         </Button>
 
         <div className="border-t-2 w-full my-5"></div>

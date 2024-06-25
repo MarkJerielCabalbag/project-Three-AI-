@@ -16,10 +16,15 @@ requestRoutes.post("/", async function (req, res, next) {
     redirectURL
   );
 
+  const SCOPE = [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email",
+  ];
+
   // Generate the url that will be used for the consent dialog.
   const authorizeUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
-    scope: "https://www.googleapis.com/auth/userinfo.profile  openid ",
+    scope: SCOPE,
     prompt: "consent",
   });
 
