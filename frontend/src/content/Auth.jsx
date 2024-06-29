@@ -1,29 +1,18 @@
-import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { BrainCircuit, Lock, Mail, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { auth } from "@/api/useApi";
+
+import mainBg from "../assets/main-bg.mp4";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import Video from "./Video";
 
-function navigate(url) {
-  window.location.href = url;
-}
-async function auth() {
-  const response = await fetch("http://127.0.0.1:8000/request", {
-    method: "POST",
-  });
-  const data = await response.json();
-
-  console.log(data);
-  navigate(data.url);
-}
-
-function Auth({ authContent }) {
+function Auth() {
   return (
-    <div className="bg-neutral-100 h-screen w-screen flex flex-col items-center justify-center gap-10">
-      <div className=" text-center">
+    <div className="h-screen w-screen flex flex-col items-center justify-center gap-10 relative z-50">
+      <Video src={mainBg} className="absolute z-0 w-full h-full" />
+      <div className=" text-center z-50">
         <h1 className="text-2xl flex gap-2 items-center justify-center italic font-bold">
           <BrainCircuit />
           eduGemini
@@ -36,7 +25,10 @@ function Auth({ authContent }) {
           analysis, personalized feedback, and time-saving efficiency. 🌟🚀
         </p>
       </div>
-      <Tabs defaultValue="signin" className="w-4/12 shadow-2xl p-5 rounded">
+      <Tabs
+        defaultValue="signin"
+        className="z-50 bg-white w-4/12 shadow-2xl p-5 rounded"
+      >
         <TabsList className="w-full">
           <TabsTrigger value="signin" className="w-2/4">
             Sign in
@@ -55,7 +47,6 @@ function Auth({ authContent }) {
           <button
             className="w-full px-4 py-2  border flex justify-center gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
             onClick={(e) => {
-              e.preventDefault();
               auth();
             }}
           >

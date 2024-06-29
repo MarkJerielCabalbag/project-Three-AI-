@@ -31,7 +31,7 @@ function SignIn() {
           </Label>
           <Input name="email" placeholder="Your Password" />
         </div>
-        <Button className="bg-primary w-full">Sign-in</Button>
+        <Button className="bg-primary w-full">Sign in</Button>
 
         <div className="border-t-2 w-full my-5"></div>
       </form>

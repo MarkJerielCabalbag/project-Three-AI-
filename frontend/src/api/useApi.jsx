@@ -1,5 +1,19 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 
+function navigate(url) {
+  window.location.href = url;
+}
+
+export async function auth() {
+  const response = await fetch("http://127.0.0.1:8000/request", {
+    method: "POST",
+  });
+  const data = await response.json();
+
+  console.log(data);
+  navigate(data.url);
+}
+
 //@desc   register user fn
 //@method POST
 async function register(formData) {

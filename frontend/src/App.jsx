@@ -1,30 +1,27 @@
 import React from "react";
-import Auth from "./content/Auth";
-import Home from "./content/Home";
-import { Toaster } from "react-hot-toast";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Navigation from "./content/Navigation";
 import AppLayout from "./layout/AppLayout";
+import Home from "./content/Home";
+import Class from "./content/Class";
+import Enrolled from "./content/Enrolled";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<AppLayout />}>
       <Route path="/home" element={<Home />} />
+      <Route path="/class" element={<Class />} />
+      <Route path="/enrolled" element={<Enrolled />} />
     </Route>
   )
 );
+
 function App() {
-  return (
-    <>
-      <Auth />
-      <Toaster />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
